@@ -11,13 +11,13 @@ export function StickyNavbar() {
           className={({ isActive, isPending }) =>
             isPending ? "pending" : isActive ? "active" : ""
           }>
-          Movies
+          🍿 Films
       </NavLink>
       <NavLink to="/about"
           className={({ isActive, isPending }) =>
             isPending ? "pending" : isActive ? "active" : ""
           }>
-          About
+          😍 A propos
       </NavLink>
     </ul>
   );

@@ -40,12 +40,12 @@ const Movies = () => {
 
   return ( 
     <>
-      <header className="flex flex-row w-full mb-5 gap-3">
+      <header className="flex flex-row w-full mb-5 gap-3 m-2">
         <Button onClick={() => sortBy('name')} className="basis-1/3">🍿 Nom</Button>
         <Button onClick={() => sortBy('date')} className="basis-1/3">📅 Date</Button>
-        <Button onClick={() => sortBy('popularity')} className="basis-1/3">💯 Popularity</Button>
+        <Button onClick={() => sortBy('popularity')} className="basis-1/3">💯 Popularité</Button>
       </header>
-      <section className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
+      <section className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 m-2">
         {movies.map(movie => 
           <>
             <div className="flex flex-row gap-4 items-start card relative">
