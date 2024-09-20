@@ -47,8 +47,7 @@ const Movies = () => {
       </header>
       <section className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
         {movies.map(movie => 
-        <>
-          <NavLink to={`${movie.id}`}>
+          <>
             <div className="flex flex-row gap-4 items-start card relative">
               <img className="rounded" src={movie.poster_path} alt="imgAlt" style={{width: "200px"}}/>
               <div className="mt-2">
@@ -58,9 +57,11 @@ const Movies = () => {
                   <div className="mt-2 text-sm text-slate-600 p-5 max-h-36 overflow-hidden text-ellipsis">{ movie.overview }</div>
                 </div>
               </div>
-              <div className="absolute bottom-3 right-3 px-6 py-2 bg-gradient-to-r from-blue-500 to-indigo-600 text-white rounded-xl shadow-md hover:from-blue-600 hover:to-indigo-700 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-opacity-50 transform hover:scale-105 transition-transform duration-300 ease-in-out" onClick={() => goToHomePage(movie.homepage)}>Site officiel</div>
+              <NavLink to={`${movie.id}`}>
+                <div className="clickable absolute bottom-3 left-3 px-3 py-1 bg-gradient-to-r from-blue-500 to-indigo-600 text-white rounded-full shadow-md hover:from-blue-600 hover:to-indigo-700 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-opacity-50 transform hover:scale-105 transition-transform duration-300 ease-in-out">+</div>
+              </NavLink>
+              <div className="clickable absolute bottom-3 right-3 px-4 py-1 bg-gradient-to-r from-blue-500 to-indigo-600 text-white rounded-xl shadow-md hover:from-blue-600 hover:to-indigo-700 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-opacity-50 transform hover:scale-105 transition-transform duration-300 ease-in-out" onClick={() => goToHomePage(movie.homepage)}>Site officiel</div>
             </div>
-          </NavLink>
           </>
         )}
       </section>

@@ -13,9 +13,8 @@ const Movie = () => {
   };
 
   useEffect(() => {
-    console.log(params);
     getMovie();
-  }, []);
+  }, [params]);
 
   return ( 
     <>
