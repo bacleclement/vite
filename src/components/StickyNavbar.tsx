@@ -19,6 +19,12 @@ export function StickyNavbar() {
           }>
           😍 A propos
       </NavLink>
+      <NavLink to="/todo"
+          className={({ isActive, isPending }) =>
+            isPending ? "pending" : isActive ? "active" : ""
+          }>
+          🗒️ TODO
+      </NavLink>
     </ul>
   );
  
