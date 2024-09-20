@@ -24,7 +24,7 @@ const Button = ({ children, emoji = "✅", onClick, className, ...props }: Butto
             )}
             {...props}
         >
-            {children} {enabled && emoji}
+            {children}
         </button>
     );
 }
