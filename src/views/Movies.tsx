@@ -1,12 +1,14 @@
 import axios, {AxiosResponse} from "axios";
 import { useEffect, useState } from "react";
 import Button from "../components/Button";
+import { IMovie } from "../models/IMovie";
+import { NavLink } from "react-router-dom";
 
 const Movies = () => {
-  const [movies, setMovies]= useState<Movie[]>([]);
+  const [movies, setMovies]= useState<IMovie[]>([]);
 
   const getMovies = async() => {
-    const response: AxiosResponse<Movie[]> = await axios.get(`https://api.vueflix.boxydev.com/movies`);
+    const response: AxiosResponse<IMovie[]> = await axios.get(`https://api.vueflix.boxydev.com/movies`);
     setMovies(response.data);
   };
 
@@ -19,7 +21,7 @@ const Movies = () => {
   }
 
   const sortBy = (sortType: 'name' | 'popularity' | 'date') => {
-    let sortedMovies: Movie[] = [];
+    let sortedMovies: IMovie[] = [];
     switch (sortType) {
       case 'name':
         sortedMovies = [...movies].sort((a, b) => a.title.localeCompare(b.title));
@@ -39,22 +41,27 @@ const Movies = () => {
   return ( 
     <>
       <header className="flex flex-row w-full mb-5 gap-3">
-        <Button onClick={() => sortBy('name')} className="basis-1/3">Nom</Button>
-        <Button onClick={() => sortBy('date')} className="basis-1/3">Date</Button>
-        <Button onClick={() => sortBy('popularity')} className="basis-1/3">Popularity</Button>
+        <Button onClick={() => sortBy('name')} className="basis-1/3">🍿 Nom</Button>
+        <Button onClick={() => sortBy('date')} className="basis-1/3">📅 Date</Button>
+        <Button onClick={() => sortBy('popularity')} className="basis-1/3">💯 Popularity</Button>
       </header>
-      <section className="flex flex-col gap-4">
+      <section className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
         {movies.map(movie => 
-          <div className="flex flex-row gap-4 items-start card relative" onClick={() => goToHomePage(movie.homepage)}>
-            <img className="rounded" src={movie.poster_path} alt="imgAlt" style={{width: "200px"}}/>
-            <div className="mt-2">
-              <div className="flex flex-col gap-4 items-start">
-                <h1 className="font-bold text-slate-700 text-2xl">{movie.title }</h1>
-                <div className="text-xs uppercase font-bold tracking-wider absolute top-3 right-3 text-red-600">{ movie.budget } $</div>
-                <div className="mt-2 text-sm text-slate-600">{ movie.overview }</div>
+        <>
+          <NavLink to={`${movie.id}`}>
+            <div className="flex flex-row gap-4 items-start card relative">
+              <img className="rounded" src={movie.poster_path} alt="imgAlt" style={{width: "200px"}}/>
+              <div className="mt-2">
+                <div className="flex flex-col gap-4 items-start">
+                  <h2 className="font-bold text-slate-600 text-2xl">{movie.title }</h2>
+                  <div className="text-xs uppercase font-bold tracking-wider absolute top-3 right-3 text-red-600">{ movie.budget } $</div>
+                  <div className="mt-2 text-sm text-slate-600 p-5 max-h-36 overflow-hidden text-ellipsis">{ movie.overview }</div>
+                </div>
               </div>
+              <div className="absolute bottom-3 right-3 px-6 py-2 bg-gradient-to-r from-blue-500 to-indigo-600 text-white rounded-xl shadow-md hover:from-blue-600 hover:to-indigo-700 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-opacity-50 transform hover:scale-105 transition-transform duration-300 ease-in-out" onClick={() => goToHomePage(movie.homepage)}>Site officiel</div>
             </div>
-          </div>
+          </NavLink>
+          </>
         )}
       </section>
     </>
@@ -63,28 +70,3 @@ const Movies = () => {
 
 export default Movies;
 
-interface Movie {
-  adult: boolean,
-  backdrop_path: string,
-  budget: null,
-  homepage: string,
-  id: number,
-  imdb_id: string,
-  origin_country: [],
-  original_title: string,
-  overview: string,
-  popularity: number,
-  poster_path: string,
-  release_date: Date,
-  revenue: number,
-  runtime: number,
-  status: string,
-  tagline: string
-  title: string,
-  video: string,
-  vote_average: number,
-  vote_count: number,
-  youtube: string,
-  genreId: number
-  actorsId: [],
-}

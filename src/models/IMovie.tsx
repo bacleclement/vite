@@ -1,0 +1,25 @@
+export interface IMovie {
+  adult: boolean,
+  backdrop_path: string,
+  budget: null,
+  homepage: string,
+  id: number,
+  imdb_id: string,
+  origin_country: [],
+  original_title: string,
+  overview: string,
+  popularity: number,
+  poster_path: string,
+  release_date: Date,
+  revenue: number,
+  runtime: number,
+  status: string,
+  tagline: string
+  title: string,
+  video: string,
+  vote_average: number,
+  vote_count: number,
+  youtube: string,
+  genreId: number
+  actorsId: [],
+}
