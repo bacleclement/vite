@@ -1,5 +1,5 @@
 import './App.css'
-import Movies from './components/Movies';
+import Movies from './views/Movies';
 // import Button from './components/Button'
 // import Counter from './components/Counter'
 // import Users from './components/Users';
